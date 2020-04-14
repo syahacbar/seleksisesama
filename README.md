@@ -1,2 +1,2 @@
-# SELEKSI SESAMA UNIPA
- Sistem Seleksi Mahasiswa Baru Jalur SESAMA Universitas Papua (Rev. April 2020)
+# seleksisesama
+ Sistem Seleksi Mahasiswa Baru Jalur SESAMA Universitas Papua
