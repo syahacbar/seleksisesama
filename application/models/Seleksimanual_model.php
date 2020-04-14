@@ -7,7 +7,7 @@ class Seleksimanual_model extends CI_Model {
     var $column_order = array('','nopendaftar','namapendaftar','','suku','jurusanslta','nsem3','nsem4','nsem5','ratarata','tahunlulus','status'); //set column field database for datatable orderable
     var $column_search = array('nopendaftar','namapendaftar');
     var $order = array('nopendaftar' => 'asc'); // default order 
- 
+  
     public function __construct()
     {
         parent::__construct();
