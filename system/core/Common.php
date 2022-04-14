@@ -301,6 +301,7 @@ if ( ! function_exists('config_item'))
 		}
 
 		return isset($_config[0][$item]) ? $_config[0][$item] : NULL;
+		
 	}
 }
 

@@ -1,4 +1,3 @@
-
 <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -83,7 +82,7 @@
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
-              <h3 class="box-title">Presentasi Jumlah Peminat Berdasarkan Suku</h3>
+              <h3 class="box-title">Persentase Jumlah Peminat Berdasarkan Suku</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -104,7 +103,7 @@
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
-              <h3 class="box-title">Presentasi Jumlah Peminat Berdasarkan Tahun Lulus</h3>
+              <h3 class="box-title">Persentase Jumlah Peminat Berdasarkan Tahun Lulus</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -370,7 +369,7 @@
                     plotShadow: false
                  },   
                  title: {
-                    text: 'Presentasi Jumlah Peminat Berdasarkan Suku'
+                    text: 'Persentase Jumlah Peminat Berdasarkan Suku'
                  },
                  tooltip: {
                     formatter: function() {
@@ -427,7 +426,7 @@
                     plotShadow: false
                  },   
                  title: {
-                    text: 'Presentasi Jumlah Peminat Berdasarkan Tahun Lulus'
+                    text: 'Persentase Jumlah Peminat Berdasarkan Tahun Lulus'
                  },
                  tooltip: {
                     formatter: function() {

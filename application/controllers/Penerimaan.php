@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class Penerimaan extends MY_Controller {
  
-    public function __construct()
+    public function __construct() 
     {
         parent::__construct();
         $this->load->model('Pendaftar_model','pendaftar');
@@ -33,7 +33,8 @@ class Penerimaan extends MY_Controller {
  
     public function ajax_list()
     {
-        $list = $this->penerimaan->get_datatables(); 
+        $tahunakademik = $this->pengaturan->gettahunakademik()->nilai;
+        $list = $this->penerimaan->get_datatables($tahunakademik); 
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $result) {
@@ -53,8 +54,8 @@ class Penerimaan extends MY_Controller {
   
         $output = array(
                         "draw" => $_POST['draw'],
-                        "recordsTotal" => $this->penerimaan->count_all(),
-                        "recordsFiltered" => $this->penerimaan->count_filtered(),
+                        "recordsTotal" => $this->penerimaan->count_all($tahunakademik),
+                        "recordsFiltered" => $this->penerimaan->count_filtered($tahunakademik),
                         "data" => $data,
                 );
         //output to json format

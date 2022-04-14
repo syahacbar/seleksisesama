@@ -14,7 +14,7 @@
 
   <div class="box">
    <div class="box-header">
-     <h3 class="box-title">Hasil Seleksi Jalur Sesama Universitas Papua <?=$tahun;?></h3>
+     <h3 class="box-title">Hasil Seleksi Jalur Sesama Universitas Papua <?=$tahunakademik;?></h3>
      
      <div class="pull-right">
      <?php if($this->ion_auth->is_admin()){?>

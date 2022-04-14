@@ -1,4 +1,5 @@
 <?php
+ob_start();
 			$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
             $pdf->SetTitle('Seleksi Lokal Universitas Papua');
             
@@ -49,8 +50,8 @@
                                 <tr bgcolor="##a4a1a1">
                                     <th width="5%" align="center"><strong>NO</strong></th>
                                     <th width="20%" align="center"><strong>NO. PESERTA</strong></th>
-                                    <th width="55%" align="center"><strong>NAMA</strong></th>
-                                    <th width="20%" align="center"><strong>SUKU</strong></th>
+                                    <th width="45%" align="center"><strong>NAMA</strong></th>
+                                    <th width="30%" align="center"><strong>ASAL SEKOLAH</strong></th>
                                 </tr>';
                     foreach ($this->laporan->skpdf($prodi_list->namaprodi) as $row) 
                         {
@@ -60,14 +61,14 @@
                                     <td align="center">'.$no.'</td>
                                     <td align="center">'.$row->nopendaftar.'</td>
                                     <td>'.strtoupper($row->namapendaftar).'</td>
-                                    <td align="center">'.strtoupper($row->suku).'</td>
+                                    <td>'.strtoupper($row->asalslta).'</td>
                                 </tr>';
                             } else {
                                 $html.='<tr bgcolor="#c3bfbf">
                                     <td align="center">'.$no.'</td>
                                     <td align="center">'.$row->nopendaftar.'</td>
                                     <td>'.strtoupper($row->namapendaftar).'</td>
-                                    <td align="center">'.strtoupper($row->suku).'</td>
+                                    <td>'.strtoupper($row->asalslta).'</td>
                                 </tr>';
                             }
                         }
@@ -109,6 +110,7 @@
             </table>';
             
             $pdf->writeHTML($html, true, false, true, false, '');
+            ob_clean();
 			$pdf->Output('LAMPIRAN SK '.$tentangsk.'.pdf', 'I');
 ?>
                         
