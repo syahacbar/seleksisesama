@@ -26,6 +26,7 @@
          <?php  if($this->ion_auth->is_admin()){ ?> 
         <button class="btn btn-sm btn-success" onclick="add_record()"><i class="glyphicon glyphicon-plus"></i> Tambah Data</button>
         <button class="btn btn-sm btn-primary" onclick="import_excel()"><i class="glyphicon glyphicon-import"></i> Import Excel</button>
+        <button class="btn btn-sm btn-warning" onclick="inject_data()"><i class="glyphicon glyphicon-download"></i> Inject Data</button>
          <?php } ?>
         <button id="btnreload" class="btn btn-sm btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
         
@@ -464,6 +465,53 @@ function import_excel()
     $('.modal-title').text('Import Data Pendaftar Dari File Excel'); // Set Title to Bootstrap modal title
 }
 
+function inject_data()
+{
+    save_method = 'inject';
+    $('#modal_inject').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Inject Data Dari Portal PMB Sesama'); // Set Title to Bootstrap modal title
+}
+
+function inject_mulai()
+{
+    var apiaddress = $("input[name='apiaddress']").val();
+    var apikey = $("input[name='apikey']").val();
+    $.ajax({
+        url : "<?php echo site_url('pendaftar/inject_data')?>",
+        type: "POST",
+        dataType: "JSON", 
+        data: {
+            apiaddress:apiaddress,
+            apikey:apikey,
+        },
+        success: function(result)
+        {
+            console.log(result);
+            var caption = '<h3>Inject data pendaftar dari Sistem PMB Sesama</h3>';
+            var data = '';
+            var data = '<thead><tr><th>Username</th><th>Nama Lengkap</th><th>Keterangan</th></tr></thead><tbody>';
+            $.each(result.msg, function(i,item){
+                data+='<tr>';
+                data+='<td width="100">'+item.nopendaftar+'</td>';
+                data+='<td>'+item.namalengkap+'</td>';
+                data+='<td>'+item.keterangan+'</td>';
+                data+='</tr>';
+            });
+            data += '</tbody>';
+            $('#caption_inject').html(caption);
+            $('#hasil_inject').html(data);
+
+            //if success reload ajax table
+            // $('#modal_form').modal('hide');
+            // $('#table').DataTable().ajax.reload(null, false);
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            alert('Error download data');
+        }
+    });
+}
+
 function upload_file()
 {
         $.ajax({
@@ -628,7 +676,47 @@ function upload_file()
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- End Bootstrap modal -->
- 
+
+<!-- Modal Inject Data-->
+<div class="modal fade" id="modal_inject" role="dialog"> 
+    <div class="modal-dialog modal-dialog-scrollable modal-lg"role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Default Modal</h4>
+            </div>
+            <div class="modal-body form">
+                <form action="#" id="form-inject" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-12">Alamat API</label>
+                            <div class="col-md-12">
+                                <input name="apiaddress" id="apiaddress" placeholder="Masukkan URL API" class="form-control" type="text">
+                                <span class="text-danger" id="error_addressapi"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Token API</label>
+                            <div class="col-md-12">
+                                <input name="apikey" id="apikey" placeholder="Masukkan Token API" class="form-control" type="text">
+                                <span class="text-danger" id="error_tokenapi"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form> 
+                <span align="center" id="caption_inject"></span>
+                <table align="center" id="hasil_inject">
+                </table>
+            </div>            
+              
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default " data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" id="btnInject" onclick="inject_mulai()" >Mulai</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal Import Excel-->
 <div class="modal fade" id="modal_import">
     <div class="modal-dialog">

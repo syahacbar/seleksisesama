@@ -53,7 +53,7 @@ class GetPendaftar extends MY_Controller {
                 }
                 else
                 {
-                    $insert = $this->pendaftar->save($data);
+                    //$insert = $this->pendaftar->save($data);
                     echo $pendaftar->username." - ".strtoupper($pendaftar->namalengkap)." ............... <b>Success! New record added</b><br>";
                 }
             }

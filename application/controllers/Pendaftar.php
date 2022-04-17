@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
  
 class Pendaftar extends MY_Controller {
- 
+
+    var $API ="";
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +11,10 @@ class Pendaftar extends MY_Controller {
         $this->load->model('Prodi_model','prodi');
         $this->load->model('Seleksimanual_model','seleksimanual');
         $this->load->model('Pengaturan_model','pengaturan'); 
+
+        $this->API="http://localhost/restserver";
+        $this->load->library('curl');
+        $this->load->model('Pendaftar_model','pendaftar');
     }
  
     public function index()
@@ -353,6 +358,73 @@ class Pendaftar extends MY_Controller {
                 }
             }
             echo json_encode(array('status'=>TRUE));
+    }
+
+    public function inject_data()
+    {
+        $apiaddress = $this->input->post('apiaddress');
+        $apikey = $this->input->post('apikey');
+        
+        $datapendaftar = json_decode($this->curl->simple_get($apiaddress.'?X-API-KEY='.$apikey));
+        //echo "<b>".strtoupper("Inject data pendaftar dari Sistem PMB Sesama")."</b><br><br>";
+        $msg = [];
+        foreach ($datapendaftar AS $pendaftar) 
+        {
+            $data = array(
+                'nopendaftar' => $pendaftar->username,
+                'namapendaftar' => strtoupper($pendaftar->namalengkap),
+                'tempatlahir' => strtoupper($pendaftar->lokasi_tempatlahir),
+                'tanggallahir' => $pendaftar->tgl_lahir,
+                'jeniskelamin' => strtoupper($pendaftar->jeniskelamin),
+                'suku' => strtoupper($pendaftar->suku),
+                'pilihan1' => strtoupper($pendaftar->pilihan1),
+                'pilihan2' => strtoupper($pendaftar->pilihan2),
+                'pilihan3' => strtoupper($pendaftar->pilihan3),
+                'jenjangslta' => strtoupper($pendaftar->jenissmta),
+                'jurusanslta' => strtoupper($pendaftar->jurusansmta),
+                'tahunlulus' => $pendaftar->tahunlulus_smta,
+                'asalslta' => strtoupper($pendaftar->namasmta),
+                'nsem3' => $pendaftar->nrapor1,
+                'nsem4' => $pendaftar->nrapor2,
+                'nsem5' => $pendaftar->nrapor3,
+                'status' => 'B',
+                'tahunakademik' => $pendaftar->tahunakademik,
+            );
+
+            //cek apakah data sdh ada atau blm
+            $cek = $this->db->query("SELECT * FROM pendaftar WHERE nopendaftar = $pendaftar->username")->num_rows();
+            if ($cek >= 1)
+            {
+                $msg[] = array(
+                    'nopendaftar'=> $pendaftar->username,
+                    'namalengkap'=> $pendaftar->namalengkap,
+                    'keterangan'=> 'Failed! Data already exists.',
+                );
+            }
+            else
+            {
+                if($pendaftar->tahunlulus_smta == NULL)
+                {
+                    $msg[] = array(
+                        'nopendaftar'=> $pendaftar->username,
+                        'namalengkap'=> $pendaftar->namalengkap,
+                        'keterangan'=> '<font color="red">Failed! Tahun lulus cannot be Null.</font>',
+                    );
+                }
+                else
+                {
+                    $insert = $this->pendaftar->save($data);
+                    $msg[] = array(
+                        'nopendaftar'=> $pendaftar->username,
+                        'namalengkap'=> $pendaftar->namalengkap,
+                        'keterangan'=> 'Success! New record added.',
+                    );
+                }
+            }
+            
+        }
+
+        echo json_encode(array('status'=>TRUE,'msg'=>$msg));    
     }
  
 }
