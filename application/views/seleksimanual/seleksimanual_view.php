@@ -190,7 +190,7 @@ $(document).ready(function() {
             },
         
             "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-                    if ( aData[11] <= 2014 )
+                    if ( aData[10] < <?php echo date("Y"); ?> )
                     {
                         $('td', nRow).css('background-color', 'Red');
                     }
