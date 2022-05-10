@@ -17,7 +17,9 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-         
+         <li class="nav-item">
+          <a target="blank" class="nav-link" data-widget="pushmenu" href="<?php echo site_url();?>assets/Panduan_Sesama.pdf" role="button"><i class="fa fa-file-pdf-o"></i> Panduan</a>
+        </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
