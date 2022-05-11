@@ -12,10 +12,11 @@ class Laporan_model extends CI_Model {
         $this->load->model('Pengaturan_model','pengaturan');
     }
 
-    function get_printall()
+    function get_printall($ta)
     {
         $this->db->select('*');
         $this->db->from('v_penerimaanx');
+        $this->db->where('tahunakademik',$ta);
         $query = $this->db->get();
         return $query->result();
     }
@@ -169,10 +170,11 @@ class Laporan_model extends CI_Model {
     }
 
     
-    public function getrekapexcel()
+    public function getrekapexcel($ta)
     {
         $this->db->select('*');
         $this->db->from('v_rekapx');
+        $this->db->where('tahunakademik',$ta);
         $query = $this->db->get();
         return $query->result();
     }

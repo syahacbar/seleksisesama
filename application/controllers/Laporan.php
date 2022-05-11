@@ -17,7 +17,7 @@ class Laporan extends MY_Controller {
         $tahun = substr($tahunakademik,0,4);
         $title = 'PESERTA LULUS SELEKSI JALUR SESAMA UNIPA TAHUN '.$tahun;
 		$data = array(
-            'list' => $this->laporan->get_printall(),
+            'list' => $this->laporan->get_printall($tahunakademik),
             'tahunakademik' => $this->pengaturan->gettahunakademik()->nilai,
             'title' => $title,
             'tahun' => $tahun,
@@ -72,7 +72,7 @@ class Laporan extends MY_Controller {
         $persenkosong = round((($totalkosong/$dayatampung)*100),2);
         $data =array(
             'prodi' => $this->prodi->get_prodi(),
-            'list'=> $this->laporan->getrekapexcel(),
+            'list'=> $this->laporan->getrekapexcel($tahunakademik),
             'title' => 'Rekapitulasi Penerimaan Seleksi Jalur Lokal Universitas Papua 2018',
             'totalpeminat'=> $this->laporan->totalpeminat(), 
             'totaldayatampung'=> $dayatampung,
