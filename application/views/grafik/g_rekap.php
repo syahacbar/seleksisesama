@@ -58,7 +58,7 @@
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
-              <h3 class="box-title">Peminatan Per Program Studi</h3>
+              <h3 class="box-title">Peminatan Per Program Studi Pilihan 1</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -67,12 +67,58 @@
               </div>
             </div>
             <div class="box-body">
-              <div id ="mygraph1"></div>
+              <div id ="peminatprodi1"></div>
             </div>
             <!-- /.box-body-->
           </div>
         </div>
-</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Donut chart -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">Peminatan Per Program Studi Pilihan 2</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div id ="peminatprodi2"></div>
+            </div>
+            <!-- /.box-body-->
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Donut chart -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">Peminatan Per Program Studi Pilihan 3</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div id ="peminatprodi3"></div>
+            </div>
+            <!-- /.box-body-->
+          </div>
+        </div>
+    </div>
 
 
     <div class="row">
@@ -183,25 +229,27 @@
  var chart3;
  var chart4;
  var chart5;
+ var chart6;
+ var chart7;
  
         $(document).ready(function() {
-          /* GRAFIK PEMINATAN PER PRODI */
+          /* GRAFIK PEMINATAN  PRODI 1 */
               chart1 = new Highcharts.Chart(
               {
                   
                  chart: {
-                    renderTo: 'mygraph1',
+                    renderTo: 'peminatprodi1',
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false
                  },   
                  title: {
-                    text: 'Peminatan Berdasarkan Pilihan Program Studi'
+                    text: 'Peminatan Berdasarkan Pilihan Program Studi Pilihan 1'
                  },
                  tooltip: {
                     formatter: function() {
                         return '<b>'+
-                        this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' % ';
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                     }
                  },
                  
@@ -229,7 +277,121 @@
                     <?php
                         foreach($list as $row) {
                           $prodiname = $row->namaprodi;
-                          $peminat = $row->peminat;
+                          $peminat = $row->peminat1;
+                          ?>
+                            [ 
+                                '<?php echo $prodiname ?>', <?php echo $peminat; ?>
+                            ],
+                            <?php
+                        }
+                        ?>
+             
+                    ]
+                }]
+              });
+
+              /* GRAFIK PEMINATAN  PRODI 2 */
+              chart6 = new Highcharts.Chart(
+              {
+                  
+                 chart: {
+                    renderTo: 'peminatprodi2',
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                 },   
+                 title: {
+                    text: 'Peminatan Berdasarkan Pilihan Program Studi Pilihan 2'
+                 },
+                 tooltip: {
+                    formatter: function() {
+                        return '<b>'+
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
+                    }
+                 },
+                 
+                
+                 plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: 'green',
+                            formatter: function() 
+                            {
+                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                            }
+                        }
+                    }
+                 },
+       
+                    series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                    <?php
+                        foreach($list as $row) {
+                          $prodiname = $row->namaprodi;
+                          $peminat = $row->peminat2;
+                          ?>
+                            [ 
+                                '<?php echo $prodiname ?>', <?php echo $peminat; ?>
+                            ],
+                            <?php
+                        }
+                        ?>
+             
+                    ]
+                }]
+              });
+
+              /* GRAFIK PEMINATAN  PRODI 3 */
+              chart7 = new Highcharts.Chart(
+              {
+                  
+                 chart: {
+                    renderTo: 'peminatprodi3',
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                 },   
+                 title: {
+                    text: 'Peminatan Berdasarkan Pilihan Program Studi Pilihan 1'
+                 },
+                 tooltip: {
+                    formatter: function() {
+                        return '<b>'+
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
+                    }
+                 },
+                 
+                
+                 plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: 'green',
+                            formatter: function() 
+                            {
+                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                            }
+                        }
+                    }
+                 },
+       
+                    series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                    <?php
+                        foreach($list as $row) {
+                          $prodiname = $row->namaprodi;
+                          $peminat = $row->peminat3;
                           ?>
                             [ 
                                 '<?php echo $prodiname ?>', <?php echo $peminat; ?>
