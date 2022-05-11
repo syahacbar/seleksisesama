@@ -53,7 +53,7 @@ ob_start();
                                     <th width="45%" align="center"><strong>NAMA</strong></th>
                                     <th width="30%" align="center"><strong>ASAL SEKOLAH</strong></th>
                                 </tr>';
-                    foreach ($this->laporan->skpdf($prodi_list->namaprodi) as $row) 
+                    foreach ($this->laporan->skpdf($prodi_list->namaprodi,$this->pengaturan->gettahunakademik()->nilai) as $row) 
                         {
                             $no++;
                             if($no%2){
