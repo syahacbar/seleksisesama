@@ -95,7 +95,7 @@ class Seleksi extends MY_Controller {
     {
         $prodi = $this->input->post('pilihprodi');
         $dayatampung = $this->prodi->get_by_prodiname($prodi)->dayatampung;
-        $sisakuota = $this->penerimaan->count_filter_prodi($prodi);
+        $sisakuota = $this->penerimaan->count_filter_prodi($prodi,$this->pengaturan->gettahunakademik()->nilai);
 
         $datainput = array(
             'nopendaftar' => $id,
@@ -122,7 +122,7 @@ class Seleksi extends MY_Controller {
     {
         $prodi = $this->input->post('pilihprodi');
         $dayatampung = $this->prodi->get_by_prodiname($prodi)->dayatampung;
-        $jumlahditerimaprodi = $this->penerimaan->count_filter_prodi($prodi);
+        $jumlahditerimaprodi = $this->penerimaan->count_filter_prodi($prodi,$this->pengaturan->gettahunakademik()->nilai);
         $sisakuota = $dayatampung-$jumlahditerimaprodi;
         $data = [];
         $arrnopendaftar = explode(',',$this->input->post('nopendaftar'));
@@ -159,7 +159,7 @@ class Seleksi extends MY_Controller {
 
         if(isset($_POST['pilihprodi'])){
             if($_POST['pilihprodi']=='0'){
-                $data['sisakuota'] = $this->laporan->totaldayatampung()->dayatampung - $this->laporan->totalterima();
+                $data['sisakuota'] = $this->laporan->totaldayatampung()->dayatampung - $this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai);
                 $data['dayatampung'] = $this->laporan->totaldayatampung()->dayatampung;
             } elseif ($_POST['pilihprodi']=='x') {
                 $data['sisakuota'] = '';
