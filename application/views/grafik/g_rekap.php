@@ -358,7 +358,7 @@
                     plotShadow: false
                  },   
                  title: {
-                    text: 'Peminatan Berdasarkan Pilihan Program Studi Pilihan 1'
+                    text: 'Peminatan Berdasarkan Pilihan Program Studi Pilihan 3'
                  },
                  tooltip: {
                     formatter: function() {
@@ -422,7 +422,7 @@
                  tooltip: {
                     formatter: function() {
                         return '<b>'+
-                        this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' % ';
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                     }
                  },
                  
@@ -479,7 +479,7 @@
                  tooltip: {
                     formatter: function() {
                         return '<b>'+
-                        this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' % ';
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                     }
                  },
                  
@@ -536,7 +536,7 @@
                  tooltip: {
                     formatter: function() {
                         return '<b>'+
-                        this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' % ';
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                     }
                  },
                  
@@ -593,7 +593,7 @@
                  tooltip: {
                     formatter: function() {
                         return '<b>'+
-                        this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' % ';
+                        this.point.name +'</b>: '+ this.point.y +' orang ('+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                     }
                  },
                  
