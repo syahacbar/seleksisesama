@@ -13,12 +13,12 @@ class Grafik extends MY_Controller {
         $this->load->model('Pendaftar_model','pendaftar');
         $this->load->model('Grafik_model','grafik');
     }
-
+ 
 	public function index()
 	{
         
-        $totalkosong = ((int)$this->laporan->totaldayatampung()->dayatampung)-((int)$this->laporan->totalterima());
-		$totalterima = (int)$this->laporan->totalterima();
+        $totalkosong = ((int)$this->laporan->totaldayatampung()->dayatampung)-((int)$this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai));
+		$totalterima = (int)$this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai);
 		$kuotapenerimaan = $this->laporan->totaldayatampung();
 		$totalpendaftar = $this->pendaftar->count_all($this->pengaturan->gettahunakademik()->nilai);
 		$list = $this->grafik->get_penerimaan();

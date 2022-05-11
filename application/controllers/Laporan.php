@@ -54,7 +54,7 @@ class Laporan extends MY_Controller {
     {
         $tahunakademik = $this->pengaturan->gettahunakademik()->nilai;
         $tahun = substr($tahunakademik,0,4);
-        $data =array(
+        $data =array( 
             'prodi' => $this->prodi->get_prodi(),
             'view' => 'laporan/rekapitulasi',
             'tahun' => $tahun,
@@ -67,7 +67,7 @@ class Laporan extends MY_Controller {
     {
         $tahunakademik = $this->pengaturan->gettahunakademik()->nilai;
         $tahun = substr($tahunakademik,0,4);
-        $totalkosong = ((int)$this->laporan->totaldayatampung()->dayatampung)-((int)$this->laporan->totalterima());
+        $totalkosong = ((int)$this->laporan->totaldayatampung()->dayatampung)-((int)$this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai));
         $dayatampung = (int)$this->laporan->totaldayatampung()->dayatampung;
         $persenkosong = round((($totalkosong/$dayatampung)*100),2);
         $data =array(
@@ -76,7 +76,7 @@ class Laporan extends MY_Controller {
             'title' => 'Rekapitulasi Penerimaan Seleksi Jalur Lokal Universitas Papua 2018',
             'totalpeminat'=> $this->laporan->totalpeminat(), 
             'totaldayatampung'=> $dayatampung,
-            'totalterima'=>$this->laporan->totalterima(),
+            'totalterima'=>$this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai),
             'totalkosong'=>$totalkosong,
             'persenkosong'=>$persenkosong,
             'tahun' => $tahun,
@@ -118,13 +118,13 @@ class Laporan extends MY_Controller {
 
     public function gettotal()
     {
-        $totalkosong = ((int)$this->laporan->totaldayatampung()->dayatampung)-((int)$this->laporan->totalterima());
+        $totalkosong = ((int)$this->laporan->totaldayatampung()->dayatampung)-((int)$this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai));
         $dayatampung = (int)$this->laporan->totaldayatampung()->dayatampung;
         $persenkosong = round((($totalkosong/$dayatampung)*100),2);
         $data = array(
             'totalpeminat'=> $this->laporan->totalpeminat(), 
             'totaldayatampung'=> $dayatampung,
-            'totalterima'=>$this->laporan->totalterima(),
+            'totalterima'=>$this->laporan->totalterima($this->pengaturan->gettahunakademik()->nilai),
             'totalkosong'=>$totalkosong,
             'persenkosong'=>$persenkosong,
         );

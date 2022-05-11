@@ -292,7 +292,7 @@ $(document).ready(function() {
 function getdayatampung(prodi) 
     {
         $.ajax({
-            type: "POST",
+            type: "POST", 
             url: "<?php echo site_url('seleksi/getdayatampungprodi')?>",
             dataType: 'JSON',
             data: {pilihprodi:prodi},

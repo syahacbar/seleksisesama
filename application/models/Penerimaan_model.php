@@ -10,6 +10,7 @@ class Penerimaan_model extends CI_Model {
     function __construct()
     {
         parent::__construct();
+
     } 
 
     private function _get_datatables_query($tahunakademik)
@@ -75,10 +76,11 @@ class Penerimaan_model extends CI_Model {
         return $query->num_rows();
     }
 
-    function count_filter_prodi($prodi)
+    function count_filter_prodi($prodi,$ta)
     {
         $this->db->from($this->table);
         $this->db->where('namaprodi', $prodi);
+        $this->db->where('tahunakademik',$ta);
         $query = $this->db->get();
         return $query->num_rows();
     }

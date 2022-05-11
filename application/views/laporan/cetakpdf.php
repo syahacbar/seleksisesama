@@ -1,7 +1,7 @@
 <?php
 ob_start();
 			$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-            $pdf->SetTitle('Seleksi Lokal Universitas Papua');
+            $pdf->SetTitle('Seleksi Sesama Universitas Papua');
             
             $pdf->SetPrintHeader(false);
             $pdf->SetPrintFooter(false);
@@ -37,8 +37,8 @@ ob_start();
                                 <th width="20%" align="center"><strong>NO. PESERTA</strong></th>
                                 <th width="45%" align="center"><strong>NAMA</strong></th>
                                 <th width="30%" align="center"><strong>ASAL SEKOLAH</strong></th>
-                            </tr>';
-                foreach ($this->laporan->skpdf($prodi_list->namaprodi) as $row) 
+                            </tr>'; 
+                foreach ($this->laporan->skpdf($prodi_list->namaprodi,$this->pengaturan->gettahunakademik()->nilai) as $row) 
                     {
                         $no++;
                         if($no%2){

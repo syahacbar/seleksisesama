@@ -150,7 +150,7 @@ class Seleksi extends MY_Controller {
         } 
         $data['dayatampung'] = $dayatampung;
         $data['sisakuota'] = $sisakuota;
-        echo json_encode($data);
+        echo json_encode($data); 
     }
     
     public function getdayatampungprodi()
@@ -164,9 +164,9 @@ class Seleksi extends MY_Controller {
             } elseif ($_POST['pilihprodi']=='x') {
                 $data['sisakuota'] = '';
                 $data['dayatampung'] = '';
-            } else {
+            } else { 
                 $dayatampung = $this->prodi->get_by_prodiname($prodiname)->dayatampung;
-                $sisakuota = $this->penerimaan->count_filter_prodi($prodiname);
+                $sisakuota = $this->penerimaan->count_filter_prodi($prodiname,$this->pengaturan->gettahunakademik()->nilai);
                 $data['dayatampung'] = $dayatampung;
                 $data['sisakuota'] = $dayatampung-$sisakuota;
             }

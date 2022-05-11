@@ -1,6 +1,6 @@
 <section class="content">
       <!-- Small boxes (Stat box) -->
-      <div class="row">
+      <div class="row"> 
         <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">

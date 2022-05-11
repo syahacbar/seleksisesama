@@ -20,11 +20,12 @@ class Laporan_model extends CI_Model {
         return $query->result();
     }
 
-    function skpdf($prodi)
+    function skpdf($prodi,$ta)
     {
         $this->db->select('*');
         $this->db->from('v_penerimaanx');
         $this->db->where('namaprodi', $prodi);
+        $this->db->where('tahunakademik', $ta);
         $query = $this->db->get();
         return $query->result();
     }
@@ -159,9 +160,11 @@ class Laporan_model extends CI_Model {
         return $this->db->get('prodi')->row();
     }
 
-    public function totalterima()
+    public function totalterima($ta)
     {
+        $this->db->where('tahunakademik',$ta);
         $this->db->from('v_penerimaanx');
+
         return $this->db->count_all_results();
     }
 
