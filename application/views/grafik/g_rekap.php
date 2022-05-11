@@ -321,7 +321,7 @@
                             connectorColor: 'green',
                             formatter: function() 
                             {
-                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                                return '<b>' + this.point.name + '</b>: ' + this.point.y + ' orang ( '+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                             }
                         }
                     }
@@ -378,7 +378,7 @@
                             connectorColor: 'green',
                             formatter: function() 
                             {
-                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                                return '<b>' + this.point.name + '</b>: ' + this.point.y + ' orang ( '+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                             }
                         }
                     }
@@ -437,7 +437,7 @@
                             connectorColor: 'green',
                             formatter: function() 
                             {
-                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                                return '<b>' + this.point.name + '</b>: ' + this.point.y + ' orang ( '+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                             }
                         }
                     }
@@ -494,7 +494,7 @@
                             connectorColor: 'green',
                             formatter: function() 
                             {
-                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                                return '<b>' + this.point.name + '</b>: ' + this.point.y + ' orang ( '+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                             }
                         }
                     }
@@ -551,7 +551,7 @@
                             connectorColor: 'green',
                             formatter: function() 
                             {
-                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                                return '<b>' + this.point.name + '</b>: ' + this.point.y + ' orang ( '+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                             }
                         }
                     }
@@ -608,7 +608,7 @@
                             connectorColor: 'green',
                             formatter: function() 
                             {
-                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                                return '<b>' + this.point.name + '</b>: ' + this.point.y + ' orang ( '+ Highcharts.numberFormat(this.percentage, 2) +' % )';
                             }
                         }
                     }
