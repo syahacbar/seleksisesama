@@ -1,3 +1,4 @@
+
 <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row"> 
@@ -287,7 +288,24 @@
                         ?>
              
                     ]
-                }]
+                }],
+                 responsive: {
+                      rules: [{
+                       condition: {
+                         maxWidth: 300
+                        },
+                       chartOptions: {
+                        plotOptions: {
+                         pie: {
+                          dataLabels: {
+                           enabled: false
+                           // add your costume code here
+                           }
+                         }
+                       }
+                      }
+                    }]
+                    }
               });
 
               /* GRAFIK PEMINATAN  PRODI 2 */
