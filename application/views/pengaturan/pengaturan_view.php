@@ -161,12 +161,7 @@
                         </div>
                           <div class="form-group">
                             <label>Gambar Pengesah</label>
-                            <div class="input-group">
-                                <input name="filettd" id="filettd" class="form-control" type="file">
-                                <div class="input-group-btn">
-                                    <button type="button" id="btnsavefilettd" onclick="savefilettd()" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </div>
+                            << Coming Soon >>
                         </div>
                     </div>
                 </div>
