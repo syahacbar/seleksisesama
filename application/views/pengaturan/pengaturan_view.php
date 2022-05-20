@@ -124,7 +124,7 @@
                             </div>
                         </div>
                          <div class="form-group">
-                            <label>Nomor Surat</label>
+                            <label>Nomor Surat SK Pengumuman</label>
                             <div class="input-group">
                                 <input name="nomorundangan" id="nomorundangan" class="form-control" type="text">
                                 <div class="input-group-btn">
