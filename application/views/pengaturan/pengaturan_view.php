@@ -4,7 +4,7 @@
     <link href="<?php echo base_url('public/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
 <div class="row">
 <form action="#" id="form" class="form-horizontal">
-    <div class="col-md-6">   
+    <div class="col-md-3">   
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">Pengaturan Sistem</h3> 
@@ -47,7 +47,7 @@
         </div>
     </div> 
 
-    <div class="col-md-6">   
+    <div class="col-md-5">   
         <div class="box box-default">
             <div class="box-header">
                 <h3 class="box-title">Pengaturan SK</h3> 
@@ -105,6 +105,74 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-4">   
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Pengaturan Undangan Sesama</h3> 
+            </div>
+            <div class="box-body">
+                <div class="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label>Tgl. Surat</label>
+                            <div class="input-group">
+                                <input name="tglundangan" id="tglundangan" class="form-control" type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" id="btnsavetglundangan" onclick="savetglundangan()" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label>Nomor Surat</label>
+                            <div class="input-group">
+                                <input name="nomorundangan" id="nomorundangan" class="form-control" type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" id="btnsavenomorundangan" onclick="savenomorundangan()" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label>Perihal</label>
+                            <div class="input-group">
+                                <input name="perihalundangan" id="perihalundangan" class="form-control" type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" id="btnsaveperihalundangan" onclick="saveperihalundangan()" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label>Tgl. Registrasi</label>
+                            <div class="input-group">
+                                <input name="tglregist" id="tglregist" class="form-control" type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" id="btnsavetglregist" onclick="savetglregist()" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label>Nomor Pengumuman</label>
+                            <div class="input-group">
+                                <input name="nopengumuman" id="nopengumuman" class="form-control" type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" id="btnsavenopengumuman" onclick="savenopengumuman()" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <label>Gambar Pengesah</label>
+                            <div class="input-group">
+                                <input name="filettd" id="filettd" class="form-control" type="file">
+                                <div class="input-group-btn">
+                                    <button type="button" id="btnsavefilettd" onclick="savefilettd()" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
 </form>
 </div>
 
@@ -127,6 +195,11 @@ $(document).ready(function() {
                 $('[name="lampiransk"]').val(data.lampiransk);
                 $('[name="nomorsk"]').val(data.nomorsk);
                 $('[name="tentangsk"]').val(data.tentangsk);
+                $('[name="tglundangan"]').val(data.tglundangan);
+                $('[name="nomorundangan"]').val(data.nomorundangan);
+                $('[name="perihalundangan"]').val(data.perihalundangan);
+                $('[name="tglregist"]').val(data.tglregist);
+                $('[name="nopengumuman"]').val(data.nopengumuman);
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -259,6 +332,70 @@ function savetentangsk(){
         {
             if (data.hasil == "sukses") {
                 alert('Perubahan Tentang SK berhasil disimpan.');
+            }
+        }
+    });
+}
+
+function savetglundangan(){
+    var tglundangan = $('#tglundangan').val();
+    $.ajax({
+        url : "<?php echo base_url('pengaturan/simpantglundangan')?>",
+        type: "POST",
+        dataType: "JSON",
+        data: {'tglundangan': tglundangan},
+        success: function(data)
+        {
+            if (data.hasil == "sukses") {
+                alert('Perubahan Tanggal Undangan berhasil disimpan.');
+            }
+        }
+    });
+}
+
+function savenomorundangan(){
+    var nomorundangan = $('#nomorundangan').val();
+    $.ajax({
+        url : "<?php echo base_url('pengaturan/simpannomorundangan')?>",
+        type: "POST",
+        dataType: "JSON",
+        data: {'nomorundangan': nomorundangan},
+        success: function(data)
+        {
+            if (data.hasil == "sukses") {
+                alert('Perubahan Nomor Undangan berhasil disimpan.');
+            }
+        }
+    });
+}
+
+function saveperihalundangan(){
+    var perihalundangan = $('#perihalundangan').val();
+    $.ajax({
+        url : "<?php echo base_url('pengaturan/simpanperihalundangan')?>",
+        type: "POST",
+        dataType: "JSON",
+        data: {'perihalundangan': perihalundangan},
+        success: function(data)
+        {
+            if (data.hasil == "sukses") {
+                alert('Perubahan Perihal Undangan berhasil disimpan.');
+            }
+        }
+    });
+}
+
+function savetglregist(){
+    var tglregist = $('#tglregist').val();
+    $.ajax({
+        url : "<?php echo base_url('pengaturan/simpantglregist')?>",
+        type: "POST",
+        dataType: "JSON",
+        data: {'tglregist': tglregist},
+        success: function(data)
+        {
+            if (data.hasil == "sukses") {
+                alert('Perubahan Tanggal Registrasi berhasil disimpan.');
             }
         }
     });

@@ -106,4 +106,43 @@ class Pengaturan_model extends CI_Model {
         return $query->row();
     }
 
+    public function gettglundangan()
+    {
+        $this->db->select('nilai');
+        $this->db->where('parameter', 'tglundangan');
+        $query = $this->db->get('pengaturan');
+        return $query->row();
+    }
+
+    public function getnomorundangan()
+    {
+        $this->db->select('nilai');
+        $this->db->where('parameter', 'nomorundangan');
+        $query = $this->db->get('pengaturan');
+        return $query->row();
+    }
+
+    public function getperihalundangan()
+    {
+        $this->db->select('nilai');
+        $this->db->where('parameter', 'perihalundangan');
+        $query = $this->db->get('pengaturan');
+        return $query->row();
+    }
+
+    public function gettglregist()
+    {
+        $this->db->select('nilai');
+        $this->db->where('parameter', 'tglregist');
+        $query = $this->db->get('pengaturan');
+        return $query->row();
+    }
+    public function getnopengumuman()
+    {
+        $this->db->select('nilai');
+        $this->db->where('parameter', 'nopengumuman');
+        $query = $this->db->get('pengaturan');
+        return $query->row();
+    }
+
 }

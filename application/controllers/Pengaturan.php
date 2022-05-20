@@ -39,6 +39,11 @@ class Pengaturan extends MY_Controller {
             'lampiransk' => $this->pengaturan->getlampiransk()->nilai,
             'nomorsk' => $this->pengaturan->getnomorsk()->nilai,
             'tentangsk' => $this->pengaturan->gettentangsk()->nilai,
+            'tglundangan' => $this->pengaturan->gettglundangan()->nilai,
+            'nomorundangan' => $this->pengaturan->getnomorundangan()->nilai,
+            'perihalundangan' => $this->pengaturan->getperihalundangan()->nilai,
+            'tglregist' => $this->pengaturan->gettglregist()->nilai,
+            'nopengumuman' => $this->pengaturan->getnopengumuman()->nilai,
         );
         echo json_encode($data);
     }
@@ -137,6 +142,46 @@ class Pengaturan extends MY_Controller {
             'status' => TRUE,
         );
         $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['tentangsk']),array('parameter'=>'tentangsk'));
+        echo json_encode($data);
+    }
+
+    public function simpantglundangan()
+    {
+        $data = array(
+            'hasil' => 'sukses',
+            'status' => TRUE,
+        );
+        $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['tglundangan']),array('parameter'=>'tglundangan'));
+        echo json_encode($data);
+    }
+
+    public function simpannomorundangan()
+    {
+        $data = array(
+            'hasil' => 'sukses',
+            'status' => TRUE,
+        );
+        $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['nomorundangan']),array('parameter'=>'nomorundangan'));
+        echo json_encode($data);
+    }
+
+    public function simpanperihalundangan()
+    {
+        $data = array(
+            'hasil' => 'sukses',
+            'status' => TRUE,
+        );
+        $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['perihalundangan']),array('parameter'=>'perihalundangan'));
+        echo json_encode($data);
+    }
+
+    public function simpantglregist()
+    {
+        $data = array(
+            'hasil' => 'sukses',
+            'status' => TRUE,
+        );
+        $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['tglregist']),array('parameter'=>'tglregist'));
         echo json_encode($data);
     }
 }
