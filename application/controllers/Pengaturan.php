@@ -184,5 +184,15 @@ class Pengaturan extends MY_Controller {
         $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['tglregist']),array('parameter'=>'tglregist'));
         echo json_encode($data);
     }
+
+    public function simpannopengumuman()
+    {
+        $data = array(
+            'hasil' => 'sukses',
+            'status' => TRUE,
+        );
+        $this->pengaturan->updatepengaturan(array('nilai'=>$_POST['nopengumuman']),array('parameter'=>'nopengumuman'));
+        echo json_encode($data);
+    }
 }
  

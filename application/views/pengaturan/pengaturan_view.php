@@ -395,6 +395,22 @@ function savetglregist(){
         }
     });
 }
+
+function savenopengumuman(){
+    var nopengumuman = $('#nopengumuman').val();
+    $.ajax({
+        url : "<?php echo base_url('pengaturan/simpannopengumuman')?>",
+        type: "POST",
+        dataType: "JSON",
+        data: {'nopengumuman': nopengumuman},
+        success: function(data)
+        {
+            if (data.hasil == "sukses") {
+                alert('Perubahan Nomor Pengumuman berhasil disimpan.');
+            }
+        }
+    });
+}
 </script>
 </body>
 </html>
